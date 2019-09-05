@@ -7,22 +7,18 @@ use Amethyst\Models\MorphToRelation;
 class MorphToRelationObserver
 {
     /**
-     * Handle the MorphToRelation "created" event.
+     * Handle the MorphToRelation "saved" event.
      *
      * @param \Amethyst\Models\MorphToRelation $relation
      */
-    public function created(MorphToRelation $relation)
+    public function saved(MorphToRelation $relation)
     {
-        app('amethyst.morph-to-relation')->set($relation);
-    }
+        $oldName = $relation->getOriginal()['name'];
 
-    /**
-     * Handle the MorphToRelation "updated" event.
-     *
-     * @param \Amethyst\Models\MorphToRelation $relation
-     */
-    public function updated(MorphToRelation $relation)
-    {
+        if ($relation->name !== $oldName) {
+            app('amethyst.morph-to-relation')->unset($relation, $oldName);
+        }
+        
         app('amethyst.morph-to-relation')->set($relation);
     }
 

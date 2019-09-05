@@ -10,7 +10,7 @@ class MorphToRelationService
 	public function boot()
 	{
 		MorphToRelation::all()->map(function (MorphToRelation $relation) {
-			$this->set($relation);
+			$this->set($relation, false);
 		});
 	}
 
@@ -19,7 +19,7 @@ class MorphToRelationService
 		event(new \Railken\EloquentMapper\Events\EloquentMapUpdate($target));
 	}
 
-	public function set(MorphToRelation $relation)
+	public function set(MorphToRelation $relation, bool $event = true)
 	{
 		$model = $this->getEntityClass($relation->entity);
 		$target = $this->getEntityClass($relation->target);
@@ -35,10 +35,12 @@ class MorphToRelationService
 
         $target::morph_many($relation->name, $model, $relation->attribute);
 
-        $this->generate($target);
+        app('amethyst')->putMorphListable($relation->entity, $relation->attribute, $relation->target);
+
+        $event && $this->generate($relation->target);
 	}
 
-	public function unset(MorphToRelation $relation)
+	public function unset(MorphToRelation $relation, string $oldName = null)
 	{
 		$model = $this->getEntityClass($relation->entity);
 		$target = $this->getEntityClass($relation->target);
@@ -48,9 +50,9 @@ class MorphToRelationService
 			return;
 		}
 
-		$target::removeRelation($relation->name);
+		$target::removeRelation($oldName ? $oldName : $relation->name);
 
-		$this->generate($target);
+		$this->generate($relation->target);
 	}
 
 	public function getEntityClass(string $name) {
