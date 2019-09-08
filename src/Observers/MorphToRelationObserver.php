@@ -13,10 +13,12 @@ class MorphToRelationObserver
      */
     public function saved(MorphToRelation $relation)
     {
-        $oldName = $relation->getOriginal()['name'];
+        if (isset($relation->getOriginal()['name'])) {
+            $oldName = $relation->getOriginal()['name'];
 
-        if ($relation->name !== $oldName) {
-            app('amethyst.morph-to-relation')->unset($relation, $oldName);
+            if ($relation->name !== $oldName) {
+                app('amethyst.morph-to-relation')->unset($relation, $oldName);
+            }
         }
         
         app('amethyst.morph-to-relation')->set($relation);
