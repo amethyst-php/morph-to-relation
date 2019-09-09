@@ -16,7 +16,7 @@ class MorphToRelationService
 
     public function generate($target)
     {
-        event(new \Railken\EloquentMapper\Events\EloquentMapUpdate($target));
+        event(new \Railken\EloquentMapper\Events\EloquentMapUpdate());
     }
 
     public function set(MorphToRelation $relation, bool $event = true)
