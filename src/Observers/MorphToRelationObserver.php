@@ -20,7 +20,7 @@ class MorphToRelationObserver
                 app('amethyst.morph-to-relation')->unset($relation, $oldName);
             }
         }
-        
+
         app('amethyst.morph-to-relation')->set($relation);
     }
 

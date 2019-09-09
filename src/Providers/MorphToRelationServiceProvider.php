@@ -3,14 +3,14 @@
 namespace Amethyst\Providers;
 
 use Amethyst\Common\CommonServiceProvider;
+use Amethyst\Models\MorphToRelation;
+use Amethyst\Observers\MorphToRelationObserver;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
-use Amethyst\Observers\MorphToRelationObserver;
-use Amethyst\Models\MorphToRelation;
 
 class MorphToRelationServiceProvider extends CommonServiceProvider
 {
-	/**
+    /**
      * @inherit
      */
     public function register()

@@ -25,7 +25,7 @@ class MorphToRelationSchema extends Schema
             Attributes\TextAttribute::make('target')
                 ->setRequired(true),
             Attributes\CreatedAtAttribute::make(),
-            Attributes\UpdatedAtAttribute::make()
+            Attributes\UpdatedAtAttribute::make(),
         ];
     }
 }
