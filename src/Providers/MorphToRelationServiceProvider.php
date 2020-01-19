@@ -2,7 +2,7 @@
 
 namespace Amethyst\Providers;
 
-use Amethyst\Common\CommonServiceProvider;
+use Amethyst\Core\Providers\CommonServiceProvider;
 use Amethyst\Models\MorphToRelation;
 use Amethyst\Observers\MorphToRelationObserver;
 use Illuminate\Support\Facades\Config;
