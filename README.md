@@ -1,6 +1,6 @@
 # amethyst-morph-to-relation
 
-[![Build Status](https://travis-ci.org/amethyst-php/morph-to-relation.svg?branch=master)](https://travis-ci.org/amethyst-php/morph-to-relation)
+[![Action Status](https://github.com/amethyst-php/morph-to-relation/workflows/test/badge.svg)](https://github.com/amethyst-php/morph-to-relation/actions)
 
 [Amethyst](https://github.com/amethyst-php/amethyst) package.
 
